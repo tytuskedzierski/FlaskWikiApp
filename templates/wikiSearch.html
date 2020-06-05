@@ -4,14 +4,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
 <title>WikiSearch - {{search_phrase}}</title>
 </head>
 <body>
 <div class="container">
     <br>
         {% for record in searchlist %}
-            <a href="/Show/{{inLang}}/{{record}}"><h3>{{record}}</h3></a>
+            <a href="/Show/{{inLang}}/{{record}}" ><h3 style="font-family: 'Quicksand', sans-serif;">{{record}}</h3></a>
         {% endfor %}
+    <hr>
     
 </div>
 </body>
