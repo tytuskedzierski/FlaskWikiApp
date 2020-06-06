@@ -20,7 +20,7 @@ def mainRoute():
     previousSearch = cursor.fetchall()
     connection.close()
     return render_template('error.html', previous_search = previousSearch,
-                                         defaultLang = defaultLanguage.upper(),
+                                         defaultLang = defaultLanguage,
                                          app_adress = appAddress)
 
 @app.route('/Search/<string:lang>/<string:searchPhrase>')
@@ -35,6 +35,7 @@ def wikiSearch(searchPhrase, lang):
     return render_template('wikiSearch.html', searchlist = wikipedia.search(searchPhrase),
                                               inLang=lang,
                                               search_phrase = searchPhrase,
+                                              defaultLang = defaultLanguage,
                                               previous_search = previousSearch,
                                               app_adress = appAddress)
 
@@ -52,6 +53,7 @@ def wikiShow(searchPhrase, lang):
                                              pageContent = page.content,
                                              pageSummary = page.summary,
                                              inLang=lang,
+                                             defaultLang = defaultLanguage,
                                              app_adress = appAddress)
 
 @app.errorhandler(404)
@@ -63,7 +65,7 @@ def invalid_route(e):
     previousSearch = cursor.fetchall()
     connection.close()
     return render_template('error.html', previous_search = previousSearch,
-                                         defaultLang = defaultLanguage.upper(),
+                                         defaultLang = defaultLanguage,
                                          app_adress = appAddress)
 
 
