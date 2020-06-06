@@ -5,35 +5,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
-<title>Error</title>
+<title</title>
 </head>
 <body>
 
 <div class="container">
 </br>
-<div class="jumbotron">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-sm-10">
+                    <input type="text" id="text" class="form-control" placeholder="Search in Wikipedia" />
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" id="btn" class="btn btn-primary btn-block" value="Search" onClick="javascript: window.location.replace('Search/{{defaultLang}}/' + document.getElementById('text').value);"><i class="fas fa-search"></i>&nbsp;Search</button>
+                </div>
+            </div>
+        </div>
+    
 <div class="row">
-<div class="col-sm-4">
-<h1 style="font-family: 'Quicksand', sans-serif;">Houston!</h1>
-<h3 style="font-family: 'Quicksand', sans-serif;">We have problem!</h3>
-</div>
-<div class="col-sm-4">
-<img src="https://iili.io/J5tUMB.png" height="120px"></img>
-</div>
-</div>
-<div class="row">
-<div class="col-sm-12">
-    <h4 style="font-family: 'Quicksand', sans-serif;">Example:</h4>
-    <span style="font-family: 'Quicksand', sans-serif;">/Search/LANGUAGE-SHORTCUT/SEARCH PHRASE</span><br>
-    <a href="/Search/en/terminal" style="font-family: 'Quicksand', sans-serif;">/Search/en/terminal</a><br>
-    <a href="/Search/pl/późny gotyk" style="font-family: 'Quicksand', sans-serif;">/Search/pl/późny gotyk</a></br>
-    <a href="/Search/fr/free bsd" style="font-family: 'Quicksand', sans-serif;">/Search/fr/free bsd</a>
+<div class="col-sm-12 text-justify">
+   <h4 style="font-family: 'Quicksand', sans-serif;">Ostatnio przeglądane:</h4>
+        | {% for prevrec in previous_search %}
+             <a href="/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> | 
+        {% endfor %}
+       <hr>
     
 </div>
 </div>
 </div>
 
-</div>
 </body>
 
 </html>

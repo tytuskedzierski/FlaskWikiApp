@@ -10,11 +10,23 @@
 <body>
 <div class="container">
     <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <h4 style="font-family: 'Quicksand', sans-serif;">Wyniki dla: {{search_phrase}}</h4>
         {% for record in searchlist %}
             <a href="/Show/{{inLang}}/{{record}}" ><h3 style="font-family: 'Quicksand', sans-serif;">{{record}}</h3></a>
         {% endfor %}
     <hr>
-    
+</div>
+        <div class="col-sm-8 text-justify">
+        <h4 style="font-family: 'Quicksand', sans-serif;">Ostatnio przeglądane:</h4>
+        | {% for prevrec in previous_search %}
+             <a href="/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> | 
+        {% endfor %}
+       <hr>
+        </div>
+        
+</div>
 </div>
 </body>
 
