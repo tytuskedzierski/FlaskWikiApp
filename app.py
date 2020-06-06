@@ -4,22 +4,28 @@ import pymysql
 
 app = Flask(__name__)
 
-defaultLanguage = "pl"
+defaultLanguage = 'pl'
+appAddress = 'http://localhost:5000'
+dbAddress = 'localhost'
+dbUser = 'root'
+dbPass = '112233654'
+dbName = 'crypto'
 
 @app.route('/')
 def mainRoute():
-    connection = pymysql.connect('localhost', 'root', '112233654', 'crypto')
+    connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
     cursor = connection.cursor()
-    sql_query = 'SELECT id_stamp, searchPhrases, lang FROM wiki ORDER BY id_stamp DESC LIMIT 25'
+    sql_query = 'SELECT id_stamp, searchPhrases, lang FROM wiki ORDER BY id_stamp DESC LIMIT 80'
     cursor.execute(sql_query)
     previousSearch = cursor.fetchall()
     connection.close()
     return render_template('error.html', previous_search = previousSearch,
-                                         defaultLang = defaultLanguage)
+                                         defaultLang = defaultLanguage.upper(),
+                                         app_adress = appAddress)
 
 @app.route('/Search/<string:lang>/<string:searchPhrase>')
 def wikiSearch(searchPhrase, lang):
-    connection = pymysql.connect('localhost', 'root', '112233654', 'crypto')
+    connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
     cursor = connection.cursor()
     sql_query = 'SELECT id_stamp, searchPhrases, lang FROM wiki WHERE lang =' +'\'' + lang  +'\'' + ' ORDER BY id_stamp DESC LIMIT 100'
     cursor.execute(sql_query)
@@ -29,13 +35,14 @@ def wikiSearch(searchPhrase, lang):
     return render_template('wikiSearch.html', searchlist = wikipedia.search(searchPhrase),
                                               inLang=lang,
                                               search_phrase = searchPhrase,
-                                              previous_search = previousSearch)
+                                              previous_search = previousSearch,
+                                              app_adress = appAddress)
 
 @app.route('/Show/<string:lang>/<string:searchPhrase>')
 def wikiShow(searchPhrase, lang):
     wikipedia.set_lang(lang)
     page = wikipedia.page(searchPhrase)
-    connection = pymysql.connect('localhost', 'root', '112233654', 'crypto')
+    connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
     cursor = connection.cursor()
     insert_query = '''INSERT INTO wiki (searchPhrases, lang) values('%s','%s')''' %(searchPhrase, lang)
     cursor.execute(insert_query)
@@ -43,18 +50,21 @@ def wikiShow(searchPhrase, lang):
     connection.close()
     return render_template('wikiShow.html',  pageTitle = page.title,
                                              pageContent = page.content,
-                                             pageSummary = page.summary)
+                                             pageSummary = page.summary,
+                                             inLang=lang,
+                                             app_adress = appAddress)
 
 @app.errorhandler(404)
 def invalid_route(e):
-    connection = pymysql.connect('localhost', 'root', '112233654', 'crypto')
+    connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
     cursor = connection.cursor()
-    sql_query = 'SELECT id_stamp, searchPhrases, lang FROM wiki ORDER BY id_stamp DESC LIMIT 50'
+    sql_query = 'SELECT id_stamp, searchPhrases, lang FROM wiki ORDER BY id_stamp DESC LIMIT 80'
     cursor.execute(sql_query)
     previousSearch = cursor.fetchall()
     connection.close()
     return render_template('error.html', previous_search = previousSearch,
-                                         defaultLang = defaultLanguage)
+                                         defaultLang = defaultLanguage.upper(),
+                                         app_adress = appAddress)
 
 
 if __name__ == "__main__":

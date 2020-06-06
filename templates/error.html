@@ -5,31 +5,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
-<title</title>
+<title>WikiSearch</title>
 </head>
 <body>
-
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+<a class="navbar-brand" href="{{app_address}}">Wikipedia App</a>
+</nav> 
 <div class="container">
-</br>
+
+    </br>
+    
         <div class="jumbotron">
             <div class="row">
                 <div class="col-sm-10">
                     <input type="text" id="text" class="form-control" placeholder="Search in Wikipedia" />
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" id="btn" class="btn btn-primary btn-block" value="Search" onClick="javascript: window.location.replace('Search/{{defaultLang}}/' + document.getElementById('text').value);"><i class="fas fa-search"></i>&nbsp;Search</button>
+                    <button type="button" id="btn" class="btn btn-primary btn-block" value="Search" onClick="javascript: window.location.replace('{{app_address}}/Search/{{defaultLang}}/' + document.getElementById('text').value);"><i class="fas fa-search"></i>&nbsp;Search</button>
                 </div>
             </div>
         </div>
     
 <div class="row">
 <div class="col-sm-12 text-justify">
-   <h4 style="font-family: 'Quicksand', sans-serif;">Ostatnio przeglądane:</h4>
+   <h4 style="font-family: 'Quicksand', sans-serif;">Recently viewed articles:</h4>
         | {% for prevrec in previous_search %}
-             <a href="/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> | 
+             <a href="{{app_address}}/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> | 
         {% endfor %}
        <hr>
-    
+    <p class="float-right" style="font-family: 'Quicksand', sans-serif;"> Default language: <span class="badge badge-success">{{defaultLang}}</span></p>
 </div>
 </div>
 </div>
