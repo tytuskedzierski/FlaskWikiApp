@@ -9,7 +9,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-<a class="navbar-brand" href="{{app_address}}">Wikipedia App</a>
+<a class="navbar-brand" href="{{app_address}}">Wikipedia Client App</a>
 </nav> 
 <div class="container">
 
@@ -21,7 +21,7 @@
                     <input type="text" id="text" class="form-control" placeholder="Search in Wikipedia" />
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" id="btn" class="btn btn-primary btn-block" value="Search" onClick="javascript: window.location.replace('{{app_address}}/Search/{{defaultLang}}/' + document.getElementById('text').value);"><i class="fas fa-search"></i>&nbsp;Search</button>
+                    <button type="button" id="btn" class="btn btn-success btn-block" value="Search" onClick="javascript: window.location.replace('{{app_address}}/Search/{{defaultLang}}/' + document.getElementById('text').value);"><i class="fas fa-search"></i>&nbsp;Search</button>
                 </div>
             </div>
         </div>
@@ -29,8 +29,8 @@
 <div class="row">
 <div class="col-sm-12 text-justify">
    <h4 style="font-family: 'Quicksand', sans-serif;">Recently viewed articles:</h4>
-        | {% for prevrec in previous_search %}
-             <a href="{{app_address}}/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> | 
+        <span style="color:#c7c7c7;">|</span> {% for prevrec in previous_search %}
+             <a href="{{app_address}}/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> <span style="color:#c7c7c7;">|</span> 
         {% endfor %}
        <hr>
     <p class="float-right" style="font-family: 'Quicksand', sans-serif;"> Default language: <span class="badge badge-success">{{defaultLang}}</span></p>

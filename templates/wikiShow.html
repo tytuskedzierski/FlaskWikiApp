@@ -10,7 +10,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-<a class="navbar-brand" href="{{app_adress}}">Wikipedia App</a>
+<a class="navbar-brand" href="{{app_adress}}">Wikipedia Client App</a>
 </nav>  
     
 <div class="container">
@@ -20,6 +20,12 @@
     <hr>
 <p class ="text-justify" style="font-family: 'Quicksand', sans-serif;">{{pageContent}}</p>
 <hr>
+     <h4 style="font-family: 'Quicksand', sans-serif;">Related articles:</h4>
+   <span style="color:#c7c7c7;">|</span>  {% for record in searchlist %}
+            <a href="{{app_address}}/Show/{{inLang}}/{{record}}" ><span style="font-size: 16px; font-family: 'Quicksand', sans-serif;">{{record}}</span></a> <span style="color:#c7c7c7;">|</span> 
+    {% endfor %}
+    
+    <hr>
                 <p class="float-right" style="font-family: 'Quicksand', sans-serif;">Query language: <span class="badge badge-primary">{{inLang}}</span> Default language: <span class="badge badge-success">{{defaultLang}}</span></p>
 <br>
    

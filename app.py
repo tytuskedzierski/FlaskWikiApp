@@ -54,6 +54,7 @@ def wikiShow(searchPhrase, lang):
                                              pageSummary = page.summary,
                                              inLang=lang,
                                              defaultLang = defaultLanguage,
+                                             searchlist = wikipedia.search(searchPhrase),
                                              app_adress = appAddress)
 
 @app.errorhandler(404)
