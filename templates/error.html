@@ -11,6 +11,11 @@
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 <a class="navbar-brand" href="{{app_address}}" style="font-family: 'Quicksand', sans-serif;">Wikipedia Client App</a>
+<ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#" style="font-family: 'Quicksand', sans-serif;">Default query language: <span class="badge badge-success" >{{defaultLang}}</span></a>
+    </li>
+  </ul>  
 </nav> 
 <div class="container">
 
@@ -34,7 +39,8 @@
              <a href="{{app_address}}/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> <span style="color:#c7c7c7;">|</span> 
         {% endfor %}
        <hr>
-    <p class="float-right" style="font-family: 'Quicksand', sans-serif;"> Default language: <span class="badge badge-success">{{defaultLang}}</span></p>
+    
+    <p class="float-right" style="font-family: 'Quicksand', sans-serif;"> coded: tkedzierski</p>
 </div>
 </div>
 </div>
