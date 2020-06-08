@@ -11,6 +11,8 @@ dbUser = 'root'
 dbPass = '112233654'
 dbName = 'crypto'
 
+mainColor = '#375251'
+
 @app.route('/')
 def mainRoute():
     try:
@@ -22,10 +24,12 @@ def mainRoute():
         connection.close()
         return render_template('main.html', previous_search = previousSearch,
                                              defaultLang = defaultLanguage,
-                                             app_address = appAddress)
+                                             app_address = appAddress,
+                                             main_color = mainColor)
     except:
         return render_template('error.html', error_message = 'db connection error / sql error',
-                                                  app_address = appAddress)
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
 
 @app.route('/Search/<string:lang>/<string:searchPhrase>')
 def wikiSearch(searchPhrase, lang):
@@ -38,7 +42,8 @@ def wikiSearch(searchPhrase, lang):
         connection.close()
     except:
         return render_template('error.html', error_message = 'db connection error / sql error',
-                                                  app_address = appAddress)
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
     try:
         wikipedia.set_lang(lang)
         return render_template('wikiSearch.html', searchlist = wikipedia.search(searchPhrase),
@@ -46,10 +51,12 @@ def wikiSearch(searchPhrase, lang):
                                                   search_phrase = searchPhrase,
                                                   defaultLang = defaultLanguage,
                                                   previous_search = previousSearch,
-                                                  app_address = appAddress)
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
     except:
         return render_template('error.html', error_message = 'wikipedia connection error',
-                                                  app_address = appAddress)
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
 
 @app.route('/Show/<string:lang>/<string:searchPhrase>')
 def wikiShow(searchPhrase, lang):
@@ -65,7 +72,8 @@ def wikiShow(searchPhrase, lang):
             connection.close()
         except:
             return render_template('error.html', error_message = 'db connection error / sql error',
-                                                  app_address = appAddress)
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
         
         return render_template('wikiShow.html',  pageTitle = page.title,
                                                  pageContent = page.content,
@@ -73,10 +81,12 @@ def wikiShow(searchPhrase, lang):
                                                  inLang=lang,
                                                  defaultLang = defaultLanguage,
                                                  searchlist = wikipedia.search(searchPhrase),
-                                                 app_address = appAddress)
+                                                 app_address = appAddress,
+                                                 main_color = mainColor)
     except:
         return render_template('error.html', error_message = 'wikipedia connection error / query error',
-                                                  app_address = appAddress)
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
 
 @app.errorhandler(404)
 def invalid_route(e):
@@ -89,10 +99,12 @@ def invalid_route(e):
         connection.close()
         return render_template('main.html', previous_search = previousSearch,
                                              defaultLang = defaultLanguage,
-                                             app_address = appAddress)
+                                             app_address = appAddress,
+                                             main_color = mainColor)
     except:
         return render_template('error.html', error_message = 'db connection error / sql error',
-                                                  app_address = appAddress)
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
 
 
 if __name__ == "__main__":

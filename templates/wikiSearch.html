@@ -20,7 +20,7 @@
             <h4 style="font-family: 'Quicksand', sans-serif;">Results for: {{search_phrase}}</h4>
             <hr>
         {% for record in searchlist %}
-            <a href="{{app_address}}/Show/{{inLang}}/{{record}}" ><h3 style="font-family: 'Quicksand', sans-serif;">{{record}}</h3></a>
+            <a href="{{app_address}}/Show/{{inLang}}/{{record}}" style="color:{{main_color}};"><h3 style="font-family: 'Quicksand', sans-serif;">{{record}}</h3></a>
         {% endfor %}
     <hr>
 </div>
@@ -28,7 +28,7 @@
         <h4 style="font-family: 'Quicksand', sans-serif;">Recently viewed articles:</h4>
             <hr>
         <span style="color:#c7c7c7;">|</span> {% for prevrec in previous_search %}
-             <a href="{{app_address}}/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> <span style="color:#c7c7c7;">|</span> 
+             <a href="{{app_address}}/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif; color:{{main_color}};">{{prevrec[1]}}</a> <span style="color:#c7c7c7;">|</span> 
         {% endfor %}
        <hr>
             

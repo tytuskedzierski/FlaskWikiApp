@@ -16,13 +16,13 @@
 <div class="container">
 
 <br>
-<h2 style="font-family: 'Quicksand', sans-serif;">{{pageTitle}}</h2>
+<h2 style="font-family: 'Quicksand', sans-serif; color:{{main_color}};">{{pageTitle}}</h2>
     <hr>
 <p class ="text-justify" style="font-family: 'Quicksand', sans-serif;">{{pageContent}}</p>
 <hr>
      <h4 style="font-family: 'Quicksand', sans-serif;">Related articles:</h4>
    <span style="color:#c7c7c7;">|</span>  {% for record in searchlist %}
-            <a href="{{app_address}}/Show/{{inLang}}/{{record}}" ><span style="font-size: 16px; font-family: 'Quicksand', sans-serif;">{{record}}</span></a> <span style="color:#c7c7c7;">|</span> 
+            <a href="{{app_address}}/Show/{{inLang}}/{{record}}" style="color:{{main_color}};"><span style="font-size: 16px; font-family: 'Quicksand', sans-serif;">{{record}}</span></a> <span style="color:#c7c7c7;">|</span> 
     {% endfor %}
     
     <hr>

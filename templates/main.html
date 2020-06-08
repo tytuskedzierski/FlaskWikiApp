@@ -21,13 +21,13 @@
 
     </br>
     
-        <div class="jumbotron">
+        <div class="jumbotron" style="background-image: linear-gradient(to bottom right, #262626, {{main_color}});">
             <div class="row">
                 <div class="col-sm-10">
                     <input type="text" id="text" class="form-control" placeholder="Search in Wikipedia" style="font-family: 'Quicksand', sans-serif;" />
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" style="font-family: 'Quicksand', sans-serif;" id="btn" class="btn btn-success btn-block" value="Search" onClick="javascript: window.location.replace('{{app_address}}/Search/{{defaultLang}}/' + document.getElementById('text').value);"><i class="fas fa-search"></i>&nbsp;Search</button>
+                    <button type="button" style="font-family: 'Quicksand', sans-serif;" id="btn" class="btn btn-light btn-block" value="Search" onClick="javascript: window.location.replace('{{app_address}}/Search/{{defaultLang}}/' + document.getElementById('text').value);"><i class="fas fa-search"></i>&nbsp;Search</button>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
 <div class="col-sm-12 text-justify">
    <h4 style="font-family: 'Quicksand', sans-serif;">Recently viewed articles:</h4>
         <span style="color:#c7c7c7;">|</span> {% for prevrec in previous_search %}
-             <a href="{{app_address}}/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}}</a> <span style="color:#c7c7c7;">|</span> 
+             <a href="{{app_address}}/Show/{{prevrec[2]}}/{{prevrec[1]}}" style="font-family: 'Quicksand', sans-serif; color:{{main_color}};">{{prevrec[1]}}</a> <span style="color:#c7c7c7;">|</span> 
         {% endfor %}
        <hr>
     

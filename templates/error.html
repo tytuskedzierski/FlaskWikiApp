@@ -4,7 +4,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/bc2f0ae690.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
     
 <title>Error</title>
@@ -16,10 +15,10 @@
 </nav> 
 <div class="container">
 <br>
-<div class="jumbotron">
+<div class="jumbotron p-4 mb-4" style="background-image: linear-gradient(to bottom right, #262626, {{main_color}}); color: white;">
 <h2 style="font-family: 'Quicksand', sans-serif;">{{error_message}}</h2>
 <br>
-    <a href="{{app_address}}"><button type="button" class="btn btn-primary" style="font-family: 'Quicksand', sans-serif;">Take me back </button></a>
+    <a href="{{app_address}}"><button type="button" class="btn btn-light" style="font-family: 'Quicksand', sans-serif;">Take me back </button></a>
 </div>
     <hr>
 </div>
