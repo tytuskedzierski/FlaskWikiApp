@@ -11,7 +11,15 @@
 <body>
     
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" >
-<a class="navbar-brand" href="{{app_address}}" style="font-family: 'Quicksand', sans-serif;">Wikipedia Client App</a> 
+<a class="navbar-brand" href="{{app_address}}" style="font-family: 'Quicksand', sans-serif;">Wikipedia Client App</a>
+<ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#" style="font-family: 'Quicksand', sans-serif;">Default query language: <span class="badge badge-success" >{{defaultLang}}</span></a>
+    </li>
+        <li class="nav-item">
+      <a class="nav-link" href="{{app_address}}/Table" style="font-family: 'Quicksand', sans-serif;">Saved articles</a>
+    </li>
+  </ul>  
 </nav> 
 <div class="container">
 <br>
@@ -21,6 +29,7 @@
     <a href="{{app_address}}"><button type="button" class="btn btn-light" style="font-family: 'Quicksand', sans-serif;">Take me back </button></a>
 </div>
     <hr>
+        <p class="float-right" style="font-family: 'Quicksand', sans-serif;"> code: tkedzierski</p>
 </div>
 
 </body>

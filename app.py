@@ -30,8 +30,9 @@ def mainRoute():
         return render_template('error.html', error_message = 'db connection error / sql error',
                                                   app_address = appAddress,
                                                   main_color = mainColor)
-    
-@app.route('/AddRecord/<string:lang>/<string:searchPhrase>/')
+
+
+@app.route('/Add/<string:lang>/<string:searchPhrase>/')
 def wikiDbInsert(searchPhrase, lang):
     try:
         connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
@@ -46,7 +47,7 @@ def wikiDbInsert(searchPhrase, lang):
                                                   main_color = mainColor)
     return("Record inserted")
 
-@app.route('/DeleteRecord/<int:id>/')
+@app.route('/Delete/<int:id>/')
 def wikiDbDelete(id):
     try:
         connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
@@ -61,13 +62,13 @@ def wikiDbDelete(id):
                                                   main_color = mainColor)
     return("Record deleted")
 
-@app.route('/UpdateRecord/<int:id>/<string:lang>/<string:searchPhrase>')
+@app.route('/Update/<int:id>/<string:lang>/<string:searchPhrase>')
 def wikiDbUpdate(id, searchPhrase, lang):
     try:
         connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
         cursor = connection.cursor()
-        delete_query = '''UPDATE wiki SET lang = ''' +'\'' + str(lang) +'\'' ''' ,searchPhrases = '''  +'\'' + str(searchPhrase) +'\'' + ''' WHERE id_stamp =' ''' + str(id) + ''' ';'''
-        cursor.execute(delete_query)
+        update_query = '''UPDATE wiki SET lang = ''' +'\'' + str(lang) +'\'' ''' ,searchPhrases = '''  +'\'' + str(searchPhrase) +'\'' + ''' WHERE id_stamp =' ''' + str(id) + ''' ';'''
+        cursor.execute(update_query)
         connection.commit()
         connection.close()
     except:
@@ -76,6 +77,24 @@ def wikiDbUpdate(id, searchPhrase, lang):
                                                   main_color = mainColor)
     return("Record updated")
 
+@app.route('/Table/')
+def wikiTable():
+    try:
+        connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
+        cursor = connection.cursor()
+        sql_query = 'SELECT id_stamp, searchPhrases, lang FROM wiki ORDER BY id_stamp DESC'
+        cursor.execute(sql_query)
+        previousSearch = cursor.fetchall()
+        connection.close()
+    except:
+        return render_template('error.html', error_message = 'db connection error / sql error',
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
+    
+    return render_template('table.html', defaultLang = defaultLanguage,
+                                                  previous_search = previousSearch,
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
 
 @app.route('/Search/<string:lang>/<string:searchPhrase>')
 def wikiSearch(searchPhrase, lang):

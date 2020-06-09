@@ -4,9 +4,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/bc2f0ae690.js" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Quicksand:wght@300&display=swap" rel="stylesheet">
-
-<title>WikiShow - {{pageTitle}}</title>
+<title>WikiSearch</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" >
@@ -20,25 +20,27 @@
     </li>
   </ul>  
 </nav> 
-    
 <div class="container">
-
-<br>
-<h2 style="font-family: 'Quicksand', sans-serif; color:{{main_color}};">{{pageTitle}}</h2>
-    <hr>
-<p class ="text-justify" style="font-family: 'Quicksand', sans-serif;">{{pageContent}}</p>
-<hr>
-     <h4 style="font-family: 'Quicksand', sans-serif;">Related articles:</h4>
-   <span style="color:#c7c7c7;">|</span>  {% for record in searchlist %}
-            <a href="{{app_address}}/Show/{{inLang}}/{{record}}" style="color:{{main_color}};"><span style="font-size: 16px; font-family: 'Quicksand', sans-serif;">{{record}}</span></a> <span style="color:#c7c7c7;">|</span> 
-    {% endfor %}
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th>id_stamp</th>
+        <th>language</th>
+        <th>saved phrase</th>
+        <th></th>
+      </tr>
+    </thead>
     
+    <tbody>
+{% for prevrec in previous_search %}
+         <tr><td style="font-family: 'Quicksand', sans-serif;"> {{prevrec[0]}}  <td style="font-family: 'Quicksand', sans-serif;"> {{prevrec[2]}} <td style="font-family: 'Quicksand', sans-serif;">{{prevrec[1]}} <td><a href="{{app_address}}/Delete/{{prevrec[0]}} "> <i class="far fa-trash-alt"></i></a></td>
+        {% endfor %}
+    </tbody>
+    </table>
     <hr>
-                <p class="float-right" style="font-family: 'Quicksand', sans-serif;">Document language: <span class="badge badge-primary">{{inLang}}</span> Default language: <span class="badge badge-success">{{defaultLang}}</span></p>
-<br>
-   
-
+        <p class="float-right" style="font-family: 'Quicksand', sans-serif;"> code: tkedzierski</p>
 </div>
+
 </body>
 
 </html>
