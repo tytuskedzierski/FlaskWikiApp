@@ -11,7 +11,7 @@ dbUser = 'root'
 dbPass = '112233654'
 dbName = 'crypto'
 
-mainColor = '#375251'
+mainColor = '#ababab'
 
 @app.route('/')
 def mainRoute():
@@ -23,13 +23,59 @@ def mainRoute():
         previousSearch = cursor.fetchall()
         connection.close()
         return render_template('main.html', previous_search = previousSearch,
-                                             defaultLang = defaultLanguage,
-                                             app_address = appAddress,
-                                             main_color = mainColor)
+                                            defaultLang = defaultLanguage,
+                                            app_address = appAddress,
+                                            main_color = mainColor)
     except:
         return render_template('error.html', error_message = 'db connection error / sql error',
                                                   app_address = appAddress,
                                                   main_color = mainColor)
+    
+@app.route('/AddRecord/<string:lang>/<string:searchPhrase>/')
+def wikiDbInsert(searchPhrase, lang):
+    try:
+        connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
+        cursor = connection.cursor()
+        insert_query = '''INSERT INTO wiki (searchPhrases, lang) values('%s','%s')''' %(searchPhrase, lang)
+        cursor.execute(insert_query)
+        connection.commit()
+        connection.close()
+    except:
+        return render_template('error.html', error_message = 'db connection error / sql error',
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
+    return("Record inserted")
+
+@app.route('/DeleteRecord/<int:id>/')
+def wikiDbDelete(id):
+    try:
+        connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
+        cursor = connection.cursor()
+        delete_query = '''DELETE FROM wiki WHERE id_stamp =' ''' + str(id) + ''' ';'''
+        cursor.execute(delete_query)
+        connection.commit()
+        connection.close()
+    except:
+        return render_template('error.html', error_message = 'db connection error / sql error',
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
+    return("Record deleted")
+
+@app.route('/UpdateRecord/<int:id>/<string:lang>/<string:searchPhrase>')
+def wikiDbUpdate(id, searchPhrase, lang):
+    try:
+        connection = pymysql.connect(dbAddress, dbUser, dbPass, dbName)
+        cursor = connection.cursor()
+        delete_query = '''UPDATE wiki SET lang = ''' +'\'' + str(lang) +'\'' ''' ,searchPhrases = '''  +'\'' + str(searchPhrase) +'\'' + ''' WHERE id_stamp =' ''' + str(id) + ''' ';'''
+        cursor.execute(delete_query)
+        connection.commit()
+        connection.close()
+    except:
+        return render_template('error.html', error_message = 'db connection error / sql error',
+                                                  app_address = appAddress,
+                                                  main_color = mainColor)
+    return("Record updated")
+
 
 @app.route('/Search/<string:lang>/<string:searchPhrase>')
 def wikiSearch(searchPhrase, lang):
